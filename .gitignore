@@ -1,0 +1,16 @@
+.DS_Store
+compose.env
+
+# Workspace dependency caches
+client/node_modules
+server/node_modules
+
+# Local environment files
+client/.env
+server/.env
+
+# Build output
+client/dist
+
+# Runtime uploads
+server/uploads

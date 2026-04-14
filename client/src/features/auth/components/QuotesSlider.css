@@ -1,0 +1,26 @@
+.quote-container {
+    position: relative;
+    height: 100px; 
+    overflow: hidden;
+  }
+  
+  .quote-text {
+    position: absolute;
+    width: 100%;
+    transition: transform 1s ease-in-out;
+    will-change: transform;
+    transform: translateY(-100%);
+  }
+  
+  .quote-text:nth-child(1) {
+    transform: translateY(0);
+  }
+  
+  .quote-text:nth-child(2) {
+    transform: translateY(100%);
+  }
+  
+  .quote-container .quote-text {
+    transform: translateY(0);
+  }
+  

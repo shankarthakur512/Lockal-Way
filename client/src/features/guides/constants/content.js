@@ -1,0 +1,26 @@
+export const GUIDE_PAGE_COPY = {
+  eyebrow: "Local Guide Profile",
+  heading: "Travel with local insight, warm hosting, and real destination knowledge.",
+  aboutTitle: "About this guide",
+  detailsTitle: "Guide details",
+  bookingTitle: "Book a call",
+  bookingSubtitle: "Pick a date and a time that works for you.",
+  slotsTitle: "Available slots",
+  selectedSlot: "Selected slot",
+  confirmBooking: "Confirm and Save",
+  bookCall: "Book a Call",
+  chat: "Chat",
+  darkMode: "Dark Theme",
+  guideFallback: "Guide information not available.",
+  notProvided: "Not provided",
+  online: "Online",
+  offline: "Offline",
+  nameLabel: "Name",
+  addressLabel: "Address",
+  nativeLabel: "Native Place",
+  languageLabel: "Languages Known",
+  statusLabel: "Status",
+  ratingLabel: "Rating",
+};
+
+export const GUIDE_TIME_SLOTS = Array.from({ length: 11 }, (_, index) => `${index + 8}:00`);

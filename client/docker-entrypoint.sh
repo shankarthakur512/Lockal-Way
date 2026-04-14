@@ -1,0 +1,21 @@
+#!/bin/sh
+set -eu
+
+TEMPLATE_FILE="/usr/share/nginx/html/env-config.template.js"
+OUTPUT_FILE="/usr/share/nginx/html/env-config.js"
+
+if [ -f "$TEMPLATE_FILE" ]; then
+  envsubst '
+    $VITE_API_BASE_URL
+    $VITE_STRIPE_PUBLISHABLE_KEY
+    $VITE_MAP_API_KEY
+    $VITE_COUNTRY_STATE_CITY_API_KEY
+    $VITE_FIREBASE_API_KEY
+    $VITE_FIREBASE_AUTH_DOMAIN
+    $VITE_FIREBASE_PROJECT_ID
+    $VITE_FIREBASE_STORAGE_BUCKET
+    $VITE_FIREBASE_MESSAGING_SENDER_ID
+    $VITE_FIREBASE_APP_ID
+    $VITE_FIREBASE_MEASUREMENT_ID
+  ' < "$TEMPLATE_FILE" > "$OUTPUT_FILE"
+fi

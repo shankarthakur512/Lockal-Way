@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 200" width="520" height="200">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&amp;family=DM+Sans:wght@400;500;600&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- Icon mark: map pin with a person silhouette inside -->
+  <!-- Pin body -->
+  <path d="M60 30 C38 30 20 48 20 70 C20 98 60 140 60 140 C60 140 100 98 100 70 C100 48 82 30 60 30 Z" fill="#2C4A3E"/>
+  <!-- Pin inner circle -->
+  <circle cx="60" cy="68" r="22" fill="#F5F0E8"/>
+  <!-- Person silhouette inside pin -->
+  <!-- Head -->
+  <circle cx="60" cy="60" r="7" fill="#2C4A3E"/>
+  <!-- Body / shoulders -->
+  <path d="M46 82 C46 72 54 68 60 68 C66 68 74 72 74 82" fill="#2C4A3E"/>
+
+  <!-- Dotted path / way line extending from pin base -->
+  <circle cx="60" cy="148" r="3" fill="#C9956A"/>
+  <circle cx="60" cy="160" r="3" fill="#C9956A" opacity="0.6"/>
+  <circle cx="60" cy="172" r="3" fill="#C9956A" opacity="0.3"/>
+
+  <!-- Wordmark -->
+  <!-- "lokal" in forest green, serif weight -->
+  <text
+    x="118"
+    y="105"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="58"
+    font-weight="700"
+    fill="#2C4A3E"
+    letter-spacing="-1">lokal</text>
+
+  <!-- "way" in clay/warm accent -->
+  <text
+    x="312"
+    y="105"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="58"
+    font-weight="700"
+    fill="#C9956A"
+    letter-spacing="-1">way</text>
+
+  <!-- Tagline -->
+  <text
+    x="118"
+    y="132"
+    font-family="'Helvetica Neue', Arial, sans-serif"
+    font-size="13.5"
+    font-weight="400"
+    fill="#7A9E8A"
+    letter-spacing="3.5">TRAVEL WITH A LOCAL</text>
+</svg>

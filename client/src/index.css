@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --sand: #f5f0e8;
+    --sand-dark: #e8dfc8;
+    --clay: #c9956a;
+    --clay-dark: #a8754a;
+    --forest: #2c4a3e;
+    --forest-light: #3d6b5a;
+    --ink: #1a1a1a;
+    --slate: #4a4a4a;
+    --mist: #8a8a8a;
+    --cream: #fdfaf5;
+    --gold: #d4a24c;
+    --terracotta: #c4603b;
+    --sage: #7a9e8a;
+    --warm-white: #fffdf9;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream font-sans text-ink antialiased;
+    background-image:
+      radial-gradient(circle at top left, rgba(212, 162, 76, 0.08), transparent 30%),
+      radial-gradient(circle at top right, rgba(122, 158, 138, 0.1), transparent 25%);
+  }
+
+  body.dark {
+    @apply bg-charcoal text-cream;
+    background-image: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display tracking-tight text-ink;
+  }
+
+  body.dark h1,
+  body.dark h2,
+  body.dark h3,
+  body.dark h4,
+  body.dark h5,
+  body.dark h6 {
+    @apply text-cream;
+  }
+
+  ::selection {
+    background: rgba(201, 149, 106, 0.24);
+  }
+
+  .active {
+    @apply text-forest;
+  }
+}
+
+@layer components {
+  .surface-panel {
+    @apply rounded-[28px] border border-sand-dark/70 bg-warm-white shadow-soft;
+  }
+
+  .surface-glass {
+    @apply rounded-[24px] border border-white/20 bg-white/10 backdrop-blur-md;
+  }
+
+  .brand-button {
+    @apply inline-flex items-center justify-center rounded-full bg-forest px-6 py-3 text-sm font-semibold text-sand transition duration-300 hover:-translate-y-0.5 hover:bg-forest-light;
+  }
+
+  .brand-button-secondary {
+    @apply inline-flex items-center justify-center rounded-full border border-forest/20 bg-white/80 px-6 py-3 text-sm font-semibold text-forest transition duration-300 hover:border-forest/40 hover:bg-white;
+  }
+
+  .eyebrow-label {
+    @apply inline-flex items-center gap-2 rounded-full border border-gold/25 bg-gold/10 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-gold;
+  }
+
+  .section-shell {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-heading {
+    @apply font-display text-3xl font-semibold text-ink sm:text-4xl;
+  }
+
+  .section-copy {
+    @apply max-w-2xl text-sm leading-7 text-slate sm:text-base;
+  }
+}
+
+body.dark .react-datepicker {
+  background-color: #18211e;
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #fdfaf5;
+}
+
+body.dark .react-datepicker__header {
+  background-color: #101714;
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark .react-datepicker__current-month,
+body.dark .react-datepicker-time__header,
+body.dark .react-datepicker-year-header,
+body.dark .react-datepicker__day-name,
+body.dark .react-datepicker__day,
+body.dark .react-datepicker__time-name {
+  color: #fdfaf5;
+}
+
+body.dark .react-datepicker__day:hover,
+body.dark .react-datepicker__month-text:hover,
+body.dark .react-datepicker__quarter-text:hover,
+body.dark .react-datepicker__year-text:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+body.dark .react-datepicker__day--selected,
+body.dark .react-datepicker__day--keyboard-selected {
+  background-color: #2c4a3e;
+}

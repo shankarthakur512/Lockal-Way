@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FaFacebook, FaGoogle, FaInstagramSquare, FaTwitter } from "react-icons/fa";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { firebaseAuth } from "../../../firebase/firebaseconf";
+import { firebaseAuth, isFirebaseConfigured } from "../../../firebase/firebaseconf";
 import { CheckUser, googleAuthUser, loginUser, registerUser } from "../../../Apihandle/user";
 import { login } from "../../../Redux/authslice";
 import { APP_ROUTES } from "../../../shared/constants/routes";
@@ -119,6 +119,11 @@ const AuthPage = ({ mode = "login" }) => {
 
   const handleGoogleAuth = async (event) => {
     event.preventDefault();
+
+    if (!isFirebaseConfigured || !firebaseAuth) {
+      toastService.error(AUTH_STRINGS.googleSigninUnavailable);
+      return;
+    }
 
     if (isGoogleLoading) {
       return;
@@ -322,12 +327,16 @@ const AuthPage = ({ mode = "login" }) => {
               <div className="mt-4 grid gap-3 sm:grid-cols-2">
                 <button
                   type="button"
-                  disabled={isGoogleLoading}
-                  className="brand-button-secondary w-full justify-center rounded-full dark:border-white/10 dark:bg-white/5 dark:text-sand"
+                  disabled={isGoogleLoading || !isFirebaseConfigured}
+                  className="brand-button-secondary w-full justify-center rounded-full disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-white/5 dark:text-sand"
                   onClick={handleGoogleAuth}
                 >
                   <FaGoogle />
-                  {isGoogleLoading ? "Connecting..." : AUTH_PAGE_COPY.continueWithGoogle}
+                  {isGoogleLoading
+                    ? "Connecting..."
+                    : !isFirebaseConfigured
+                      ? "Google sign-in unavailable"
+                      : AUTH_PAGE_COPY.continueWithGoogle}
                 </button>
                 <div className="flex items-center justify-center gap-5 rounded-full border border-sand-dark bg-sand px-5 py-4 text-forest dark:border-white/10 dark:bg-white/5 dark:text-sand">
                   <FaFacebook className="text-lg" />
@@ -335,6 +344,11 @@ const AuthPage = ({ mode = "login" }) => {
                   <FaTwitter className="text-lg" />
                 </div>
               </div>
+              {!isFirebaseConfigured && (
+                <p className="mt-3 text-sm text-mist dark:text-sand/55">
+                  {AUTH_STRINGS.googleSigninUnavailable}
+                </p>
+              )}
             </div>
 
             <p className="mt-8 text-sm text-mist dark:text-sand/55">

@@ -67,6 +67,8 @@ export const AUTH_STRINGS = {
   createAccount: "Create your account",
   accountSubtitle: "to your account",
   forgotPassword: "Forgot Password?",
+  googleSigninUnavailable:
+    "Google sign-in is not configured yet. Add the Firebase web app keys in client/.env.",
   googleAccountMissing: "No account found for this Google login.",
   passwordsMismatch: "Passwords do not match.",
   emailAlreadyExists: "Email already exists. Please sign in.",

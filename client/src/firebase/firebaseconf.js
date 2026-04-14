@@ -1,4 +1,4 @@
-import { initializeApp } from "firebase/app";
+import { getApp, getApps, initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { ENV_CONFIG } from "../shared/config/env";
 
@@ -12,6 +12,18 @@ const firebaseConfig = {
   measurementId: ENV_CONFIG.firebase.measurementId,
 };
 
-const app = initializeApp(firebaseConfig);
+const REQUIRED_FIREBASE_KEYS = ["apiKey", "authDomain", "projectId", "appId"];
 
-export const firebaseAuth = getAuth(app);
+export const missingFirebaseConfigKeys = REQUIRED_FIREBASE_KEYS.filter(
+  (key) => !firebaseConfig[key]?.toString().trim()
+);
+
+export const isFirebaseConfigured = missingFirebaseConfigKeys.length === 0;
+
+const app = isFirebaseConfigured
+  ? getApps().length > 0
+    ? getApp()
+    : initializeApp(firebaseConfig)
+  : null;
+
+export const firebaseAuth = app ? getAuth(app) : null;

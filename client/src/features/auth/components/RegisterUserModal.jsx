@@ -5,7 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import { CheckUser, googleAuthUser, registerUser } from "../../../Apihandle/user";
 import { useNavigate } from "react-router-dom";
 import { GoogleAuthProvider , signInWithPopup } from "firebase/auth";
-import { firebaseAuth } from "../../../firebase/firebaseconf";
+import { firebaseAuth, isFirebaseConfigured } from "../../../firebase/firebaseconf";
 import { useDispatch } from "react-redux";
 import { login } from "../../../Redux/authslice";
 import { APP_ROUTES } from "../../../shared/constants/routes";
@@ -62,6 +62,11 @@ function SignUp ({signUpPopup ,setSignUpPopup}){
 
   const handlesingUp = async (e) =>{
     e.preventDefault();
+    if (!isFirebaseConfigured || !firebaseAuth) {
+      toastService.error(AUTH_STRINGS.googleSigninUnavailable);
+      return;
+    }
+
     try {
       const provider = new GoogleAuthProvider();
       provider.setCustomParameters({ prompt: "select_account" });
@@ -139,10 +144,12 @@ function SignUp ({signUpPopup ,setSignUpPopup}){
                     <FaApple className="text-2xl" />
                     <span className="text-base"> Continue with Apple</span>
                   </div>
-                  <div className="border border-gray-300 mt-4 flex gap-3 p-2 rounded-md justify-center items-center hover:bg-gradient-to-r from-primary to-secondary hover:scale-105 duration-200"
+                  <div className={`border border-gray-300 mt-4 flex gap-3 p-2 rounded-md justify-center items-center ${isFirebaseConfigured ? "hover:bg-gradient-to-r from-primary to-secondary hover:scale-105 cursor-pointer" : "cursor-not-allowed opacity-60"} duration-200`}
                     onClick={(e) => { handlesingUp(e); }}>
                     <FcGoogle className="text-2xl" />
-                    <span className="text-base"> Continue with Google</span>
+                    <span className="text-base">
+                      {isFirebaseConfigured ? "Continue with Google" : "Google sign-in unavailable"}
+                    </span>
                   </div>
                   <div className="border border-gray-300 mt-4 flex gap-3 p-2 rounded-md justify-center items-center hover:bg-gradient-to-r from-primary to-secondary hover:scale-105 duration-200 ">
                     <FcGoogle className="text-2xl" />

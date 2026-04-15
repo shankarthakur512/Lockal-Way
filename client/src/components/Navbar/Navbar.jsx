@@ -133,6 +133,7 @@ const Navbar = () => {
             to={APP_ROUTES.home}
             onClick={() => window.scrollTo(0, 0)}
             className="flex items-center gap-3"
+            data-testid="navbar-logo"
           >
             <img src={Logo} alt={APP_STRINGS.brandName} className="h-10 w-auto sm:h-12" />
             <div className="hidden sm:block">
@@ -189,6 +190,7 @@ const Navbar = () => {
               <button
                 className="brand-button hidden sm:inline-flex"
                 onClick={() => setShowQueryModal(true)}
+                data-testid="navbar-ask-query"
               >
                 {NAV_STRINGS.askQuery}
               </button>
@@ -198,6 +200,7 @@ const Navbar = () => {
               primaryAction ? (
                 <Link
                   to={primaryAction.link}
+                  data-testid="navbar-signin"
                   className={primaryAction.style === "primary" ? "brand-button rounded-full" : "brand-button-secondary rounded-full dark:border-white/10 dark:bg-white/5 dark:text-sand"}
                 >
                   {primaryAction.label}
@@ -218,6 +221,7 @@ const Navbar = () => {
                     className="flex items-center gap-2 rounded-full border border-sand-dark bg-white px-2 py-2 shadow-sm dark:border-white/10 dark:bg-white/5"
                     onClick={() => setShowUserMenu((current) => !current)}
                     aria-label={NAV_STRINGS.accountMenu}
+                    data-testid="navbar-account-toggle"
                   >
                     <img
                       src={userData?.avatar || "/default-avatar.png"}
@@ -238,6 +242,7 @@ const Navbar = () => {
                 className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-sand-dark bg-white text-forest shadow-sm dark:border-white/10 dark:bg-white/5 dark:text-sand"
                 onClick={() => setShowMenu((current) => !current)}
                 aria-label={showMenu ? NAV_STRINGS.closeMenu : NAV_STRINGS.openMenu}
+                data-testid="navbar-mobile-menu"
               >
                 {showMenu ? <HiMenuAlt1 size={22} /> : <HiMenuAlt3 size={22} />}
               </button>

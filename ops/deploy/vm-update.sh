@@ -10,6 +10,14 @@ HOMEPAGE_URL="${HOMEPAGE_URL:-http://127.0.0.1/}"
 
 cd "$APP_DIR"
 
+on_error() {
+  echo "Deployment failed. Gathering container state..." >&2
+  docker compose --env-file "$COMPOSE_ENV_FILE" -f "$COMPOSE_FILE" ps || true
+  docker compose --env-file "$COMPOSE_ENV_FILE" -f "$COMPOSE_FILE" logs --tail=100 || true
+}
+
+trap on_error ERR
+
 git fetch origin "$GIT_BRANCH"
 git checkout "$GIT_BRANCH"
 git pull --ff-only origin "$GIT_BRANCH"
@@ -18,5 +26,7 @@ docker compose --env-file "$COMPOSE_ENV_FILE" -f "$COMPOSE_FILE" up -d --build -
 
 curl --fail --silent --show-error "$HEALTHCHECK_URL" >/dev/null
 curl --fail --silent --show-error "$HOMEPAGE_URL" >/dev/null
+
+docker compose --env-file "$COMPOSE_ENV_FILE" -f "$COMPOSE_FILE" ps
 
 echo "Deployment completed successfully."

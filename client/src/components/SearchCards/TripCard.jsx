@@ -13,6 +13,7 @@ function TripCard({ trip }) {
       onClick={() => {
         navigate(getTripDetailsRoute(trip._id));
       }}
+      data-testid="search-trip-card"
     >
       <div className="relative overflow-hidden">
         <img

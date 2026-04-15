@@ -19,6 +19,19 @@ Lockal Way is a travel platform with:
    - frontend: `cd client && npm run dev`
    - backend: `cd server && npm run dev`
 
+## Browser QA
+The first automated browser suite lives in `client/tests/e2e`.
+
+Run it with:
+- `cd client && npm run test:e2e`
+- `cd client && npm run test:e2e:headed`
+- `cd client && npm run test:e2e:debug`
+
+The suite is designed for `vite dev` first and covers:
+- auth sign up and sign in
+- home page smoke
+- home search to search results to detail pages
+
 ## Important auth note
 Google sign-in depends on the Firebase web app keys in `client/.env`.
 

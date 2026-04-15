@@ -89,7 +89,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative overflow-hidden pb-20 pt-28 sm:pb-24 sm:pt-32">
+    <section className="relative overflow-hidden pb-20 pt-28 sm:pb-24 sm:pt-32" data-testid="home-hero">
       <div className="absolute inset-0">
         <video
           autoPlay
@@ -166,6 +166,7 @@ const Hero = () => {
           <div className="grid gap-5 lg:justify-self-end">
             <form
               data-aos="fade-left"
+              data-testid="home-search-form"
               className="surface-panel w-full max-w-xl overflow-hidden bg-warm-white/95 p-6 dark:border-white/10 dark:bg-[#18211E]/95 sm:p-8"
               onSubmit={handleSearch}
             >
@@ -189,15 +190,16 @@ const Hero = () => {
                     <HiOutlineMapPin />
                     {HOME_STRINGS.destinationLabel}
                   </span>
-                  <input
-                    type="text"
-                    value={destination}
-                    onChange={(event) => setDestination(event.target.value)}
-                    name="destination"
-                    id="destination"
-                    placeholder={HOME_STRINGS.destinationPlaceholder}
-                    className="w-full bg-transparent text-base font-medium text-ink outline-none placeholder:text-mist dark:text-cream dark:placeholder:text-sand/45"
-                  />
+                    <input
+                      type="text"
+                      value={destination}
+                      onChange={(event) => setDestination(event.target.value)}
+                      name="destination"
+                      id="destination"
+                      placeholder={HOME_STRINGS.destinationPlaceholder}
+                      data-testid="home-destination"
+                      className="w-full bg-transparent text-base font-medium text-ink outline-none placeholder:text-mist dark:text-cream dark:placeholder:text-sand/45"
+                    />
                 </label>
 
                 <div className="grid gap-4 sm:grid-cols-2">
@@ -260,7 +262,11 @@ const Hero = () => {
                 </div>
               </div>
 
-              <button type="submit" className="brand-button mt-6 w-full gap-2 rounded-[22px] py-4 text-base">
+              <button
+                type="submit"
+                className="brand-button mt-6 w-full gap-2 rounded-[22px] py-4 text-base"
+                data-testid="home-search-submit"
+              >
                 {HOME_STRINGS.searchButton}
                 <HiOutlineArrowRight className="text-lg" />
               </button>

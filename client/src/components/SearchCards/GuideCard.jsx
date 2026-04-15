@@ -17,6 +17,7 @@ function GuideCard({ guide }) {
       onClick={() => {
         navigate(getGuideDetailsRoute(guide._id));
       }}
+      data-testid="search-guide-card"
     >
       <div className="relative overflow-hidden">
         {guide?.picture ? (

@@ -85,7 +85,7 @@ function Search() {
   searchLogger.debug("Search results", { trips: filteredTrips, guides, isDarkMode, searchFilters });
 
   return (
-    <div className="min-h-screen bg-cream pb-20 pt-28 text-ink dark:bg-charcoal dark:text-cream">
+    <div className="min-h-screen bg-cream pb-20 pt-28 text-ink dark:bg-charcoal dark:text-cream" data-testid="search-page">
       <div className="section-shell">
         <section className="relative overflow-hidden rounded-[36px] border border-sand-dark bg-[linear-gradient(130deg,#1A3530_0%,#2C4A3E_52%,#3D6B5A_100%)] px-6 py-12 shadow-luxury sm:px-10 lg:px-14">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(212,162,76,0.26),transparent_25%),radial-gradient(circle_at_bottom_left,rgba(122,158,138,0.16),transparent_18%)]" />
@@ -130,6 +130,7 @@ function Search() {
               </div>
               <button
                 onClick={() => setShowFilters((current) => !current)}
+                data-testid="search-toggle-filters"
                 className="inline-flex items-center gap-2 rounded-full border border-forest/15 bg-white px-4 py-2 text-sm font-semibold text-forest transition hover:bg-sand dark:border-white/10 dark:bg-white/5 dark:text-sand"
               >
                 <HiOutlineAdjustmentsHorizontal />

@@ -164,7 +164,7 @@ const AuthPage = ({ mode = "login" }) => {
   };
 
   return (
-    <div className="min-h-screen bg-cream px-4 pb-20 pt-32 dark:bg-charcoal">
+    <div className="min-h-screen bg-cream px-4 pb-20 pt-32 dark:bg-charcoal" data-testid="auth-page">
       <div className="section-shell">
         <div className="grid gap-8 xl:grid-cols-[1.05fr_0.95fr]">
           <div className="relative overflow-hidden rounded-[36px] border border-sand-dark bg-[linear-gradient(130deg,#1A3530_0%,#2C4A3E_52%,#3D6B5A_100%)] px-8 py-10 shadow-luxury sm:px-12 sm:py-14">
@@ -196,6 +196,7 @@ const AuthPage = ({ mode = "login" }) => {
               <button
                 type="button"
                 onClick={() => navigate(APP_ROUTES.login)}
+                data-testid="auth-login-toggle"
                 className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
                   !isSignup
                     ? "bg-forest text-sand"
@@ -207,6 +208,7 @@ const AuthPage = ({ mode = "login" }) => {
               <button
                 type="button"
                 onClick={() => navigate(APP_ROUTES.signup)}
+                data-testid="auth-signup-toggle"
                 className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
                   isSignup
                     ? "bg-forest text-sand"
@@ -230,6 +232,7 @@ const AuthPage = ({ mode = "login" }) => {
                   value={email}
                   placeholder="you@example.com"
                   onChange={(event) => setEmail(event.target.value)}
+                  data-testid="auth-email"
                   className="rounded-2xl border border-sand-dark bg-white px-4 py-4 text-sm text-ink outline-none transition focus:border-forest/40 dark:border-white/10 dark:bg-[#101714] dark:text-cream"
                 />
               </label>
@@ -245,6 +248,7 @@ const AuthPage = ({ mode = "login" }) => {
                       value={fullname}
                       placeholder="Your full name"
                       onChange={(event) => setFullname(event.target.value)}
+                      data-testid="auth-fullname"
                       className="rounded-2xl border border-sand-dark bg-white px-4 py-4 text-sm text-ink outline-none transition focus:border-forest/40 dark:border-white/10 dark:bg-[#101714] dark:text-cream"
                     />
                   </label>
@@ -258,6 +262,7 @@ const AuthPage = ({ mode = "login" }) => {
                       value={username}
                       placeholder="Choose a username"
                       onChange={(event) => setUsername(event.target.value)}
+                      data-testid="auth-username"
                       className="rounded-2xl border border-sand-dark bg-white px-4 py-4 text-sm text-ink outline-none transition focus:border-forest/40 dark:border-white/10 dark:bg-[#101714] dark:text-cream"
                     />
                   </label>
@@ -273,6 +278,7 @@ const AuthPage = ({ mode = "login" }) => {
                   value={password}
                   placeholder="Enter your password"
                   onChange={(event) => setPassword(event.target.value)}
+                  data-testid="auth-password"
                   className="rounded-2xl border border-sand-dark bg-white px-4 py-4 text-sm text-ink outline-none transition focus:border-forest/40 dark:border-white/10 dark:bg-[#101714] dark:text-cream"
                 />
               </label>
@@ -288,6 +294,7 @@ const AuthPage = ({ mode = "login" }) => {
                       value={confirmPassword}
                       placeholder="Confirm your password"
                       onChange={(event) => setConfirmPassword(event.target.value)}
+                      data-testid="auth-confirm-password"
                       className="rounded-2xl border border-sand-dark bg-white px-4 py-4 text-sm text-ink outline-none transition focus:border-forest/40 dark:border-white/10 dark:bg-[#101714] dark:text-cream"
                     />
                   </label>
@@ -315,7 +322,7 @@ const AuthPage = ({ mode = "login" }) => {
                 </>
               )}
 
-              <button type="submit" className="brand-button mt-2 w-full rounded-full py-4">
+              <button type="submit" className="brand-button mt-2 w-full rounded-full py-4" data-testid="auth-submit">
                 {pageCopy.submitLabel}
               </button>
             </form>
@@ -328,6 +335,7 @@ const AuthPage = ({ mode = "login" }) => {
                 <button
                   type="button"
                   disabled={isGoogleLoading || !isFirebaseConfigured}
+                  data-testid="auth-google"
                   className="brand-button-secondary w-full justify-center rounded-full disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-white/5 dark:text-sand"
                   onClick={handleGoogleAuth}
                 >

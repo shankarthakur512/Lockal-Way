@@ -78,12 +78,14 @@ Recommended values:
 - `DEPLOY_COMPOSE_ENV_FILE=/opt/lokalway/app/compose.env`
 
 ## 7. How auto-deploy works
-On push to `main`, GitHub Actions:
-1. builds the client
-2. checks backend syntax
-3. validates both Docker images build
-4. connects to the VM over SSH
-5. runs `ops/deploy/vm-update.sh`
+On push to `main`, GitHub Actions validates the app by:
+1. building the client
+2. checking backend syntax
+3. validating the production compose file
+
+When you manually trigger the workflow with deployment secrets configured, it:
+1. connects to the VM over SSH
+2. runs `ops/deploy/vm-update.sh`
 
 That script:
 1. pulls latest code
@@ -91,6 +93,7 @@ That script:
 3. restarts the stack
 4. checks `/healthz`
 5. checks the homepage
+6. prints container status on success or failure
 
 ## 8. How you test everything step by step
 

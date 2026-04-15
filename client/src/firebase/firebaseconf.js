@@ -12,13 +12,18 @@ const firebaseConfig = {
   measurementId: ENV_CONFIG.firebase.measurementId,
 };
 
+const PLACEHOLDER_MARKERS = ["replace_me", "your-project"];
 const REQUIRED_FIREBASE_KEYS = ["apiKey", "authDomain", "projectId", "appId"];
+const isPlaceholderValue = (value) =>
+  !value || PLACEHOLDER_MARKERS.some((marker) => value.toLowerCase().includes(marker));
+const hasValidFirebaseApiKey = (value) => /^AIza[0-9A-Za-z_-]{20,}$/.test(value || "");
 
 export const missingFirebaseConfigKeys = REQUIRED_FIREBASE_KEYS.filter(
-  (key) => !firebaseConfig[key]?.toString().trim()
+  (key) => isPlaceholderValue(firebaseConfig[key]?.toString().trim())
 );
 
-export const isFirebaseConfigured = missingFirebaseConfigKeys.length === 0;
+export const isFirebaseConfigured =
+  missingFirebaseConfigKeys.length === 0 && hasValidFirebaseApiKey(firebaseConfig.apiKey);
 
 const app = isFirebaseConfigured
   ? getApps().length > 0

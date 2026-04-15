@@ -43,6 +43,7 @@ const UserMenu = ({ onItemClick }) => {
         ))}
         <button
           onClick={handleLogout}
+          data-testid="navbar-logout"
           className="mt-1 block w-full rounded-2xl border border-sand-dark px-4 py-3 text-left text-sm text-terracotta transition hover:bg-sand dark:border-white/10 dark:hover:bg-white/10"
         >
           {NAV_STRINGS.logout}
